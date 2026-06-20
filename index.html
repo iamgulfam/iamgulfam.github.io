@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gulfam Raza | Data Analyst Portfolio</title>
+<meta name="description" content="Gulfam Raza - Data Analyst skilled in Excel, SQL, Power BI, Python.">
+
+<!--
+========================================================================
+  WELCOME! THIS FILE IS YOUR WHOLE WEBSITE.
+  Everything (HTML, CSS, JavaScript) lives in this one index.html file.
+  You do not need any coding knowledge to update it. Just use Ctrl+F
+  (or Cmd+F on Mac) to find the labeled comments below and edit the
+  text between the tags. Every spot you might want to change has a
+  comment right above it starting with "EDIT THIS:".
+========================================================================
+-->
+
+<!-- Google Fonts: Source Sans 3 (body/UI) + Source Serif 4 (headings) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet">
+
+<!-- Font Awesome icons, loaded from CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+/* ====================================================================
+   DESIGN TOKENS
+   Change the accent color here and it updates everywhere on the site.
+==================================================================== */
+:root{
+  --accent: #5e81ac;
+  --accent-dark: #4c6a8c;
+  --ink: #2b2f36;
+  --ink-soft: #5b6168;
+  --paper: #ffffff;
+  --paper-soft: #f6f7f9;
+  --line: #e3e6ea;
+  --sidebar-width: 290px;
+  --serif: "Source Serif 4", Georgia, serif;
+  --sans: "Source Sans 3", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+*{ box-sizing: border-box; }
+html{ scroll-behavior: smooth; }
+body{
+  margin: 0;
+  font-family: var(--sans);
+  color: var(--ink);
+  background: var(--paper);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+h1,h2,h3,h4{
+  font-family: var(--serif);
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.2;
+  margin: 0 0 0.5em 0;
+}
+a{ color: var(--accent); text-decoration: none; }
+a:hover{ color: var(--accent-dark); }
+img{ max-width: 100%; display: block; }
+section{ padding: 80px 60px; max-width: 980px; }
+.eyebrow{
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 700;
+  margin-bottom: 14px;
+  display: block;
+}
+
+/* Visible keyboard focus, for accessibility */
+a:focus-visible, button:focus-visible{
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* ====================================================================
+   TOP HEADER BAR (logo + social icons)
+   Hidden on desktop because the sidebar already covers this job.
+   It appears on mobile once the sidebar collapses (see media query).
+==================================================================== */
+.topbar{
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 60px;
+  background: var(--ink);
+  color: #fff;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 18px;
+  z-index: 1000;
+}
+.topbar .logo{
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.topbar .topbar-socials a{
+  color: #cfd6de;
+  margin-left: 14px;
+  font-size: 1.05rem;
+}
+.topbar .topbar-socials a:hover{ color: var(--accent); }
+.menu-toggle{
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.4rem;
+  cursor: pointer;
+  padding: 4px 8px;
+}
+
+/* ====================================================================
+   FIXED LEFT SIDEBAR
+==================================================================== */
+.sidebar{
+  position: fixed;
+  top: 0; left: 0; bottom: 0;
+  width: var(--sidebar-width);
+  background: var(--ink);
+  color: #e8eaed;
+  display: flex;
+  flex-direction: column;
+  padding: 50px 36px;
+  overflow-y: auto;
+  z-index: 900;
+}
+.sidebar .name{
+  font-family: var(--serif);
+  font-size: 1.65rem;
+  color: #fff;
+  margin-bottom: 4px;
+}
+.sidebar .role{
+  font-size: 0.92rem;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 38px;
+  line-height: 1.5;
+}
+.sidebar nav{
+  margin-bottom: auto;
+}
+.sidebar nav a{
+  display: block;
+  color: #cfd3d9;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  padding: 11px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  transition: color 0.2s, padding-left 0.2s;
+}
+.sidebar nav a:hover, .sidebar nav a.active{
+  color: #fff;
+  padding-left: 6px;
+}
+.sidebar nav a.active{ color: var(--accent); }
+.sidebar .socials{
+  display: flex;
+  gap: 18px;
+  margin-top: 40px;
+}
+.sidebar .socials a{
+  color: #cfd3d9;
+  font-size: 1.15rem;
+}
+.sidebar .socials a:hover{ color: var(--accent); }
+
+/* ====================================================================
+   PAGE LAYOUT WRAPPER
+   Pushes all main content to the right of the fixed sidebar.
+==================================================================== */
+.main{
+  margin-left: var(--sidebar-width);
+}
+
+/* ====================================================================
+   BANNER SECTION
+==================================================================== */
+.banner{
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  padding: 110px 60px 90px;
+  max-width: 1100px;
+  flex-wrap: wrap;
+}
+.banner .bio-col{
+  flex: 1 1 420px;
+  min-width: 280px;
+}
+.banner h1{
+  font-size: 2.4rem;
+  margin-bottom: 18px;
+}
+.banner .bio-list{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 1.02rem;
+  color: var(--ink-soft);
+}
+.banner .bio-list li{
+  margin-bottom: 12px;
+  padding-left: 28px;
+  position: relative;
+}
+.banner .bio-list li .emoji{
+  position: absolute;
+  left: 0;
+}
+.banner .photo-col{
+  flex: 0 0 220px;
+  display: flex;
+  justify-content: center;
+}
+.banner .photo-frame{
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: var(--paper-soft);
+  border: 4px solid var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  color: var(--accent);
+  font-size: 3.2rem;
+}
+.banner .photo-frame img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.skills-line{
+  margin-top: 26px;
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+}
+.skills-line strong{ color: var(--ink); }
+
+/* ====================================================================
+   SECTION HEADINGS (shared by Projects / Contact)
+==================================================================== */
+.section-head{
+  margin-bottom: 44px;
+}
+.section-head h2{
+  font-size: 2rem;
+}
+
+/* ====================================================================
+   PROJECTS SECTION — 3 column responsive card grid
+==================================================================== */
+#projects{ background: var(--paper-soft); max-width: 100%; padding: 80px 60px; }
+.projects-inner{ max-width: 1100px; margin: 0 auto; }
+.project-grid{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+.project-card{
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.project-card:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 14px 28px rgba(43,47,54,0.1);
+}
+.project-card .thumb{
+  width: 100%;
+  aspect-ratio: 16/10;
+  background: #eef1f4;
+  overflow: hidden;
+}
+.project-card .thumb img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.project-card .card-body{
+  padding: 22px 22px 26px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.project-card h3{
+  font-size: 1.12rem;
+  margin-bottom: 10px;
+}
+.project-card p{
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  flex: 1;
+  margin: 0 0 20px 0;
+}
+.btn-view{
+  display: inline-block;
+  align-self: flex-start;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+.btn-view:hover{
+  background: var(--accent-dark);
+  color: #fff;
+}
+
+/* ====================================================================
+   CONTACT SECTION
+==================================================================== */
+#contact .section-head{ margin-bottom: 36px; }
+.contact-list{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 1.05rem;
+}
+.contact-list li{
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+}
+.contact-list li:last-child{ border-bottom: none; }
+.contact-list i{
+  width: 22px;
+  text-align: center;
+  color: var(--accent);
+  font-size: 1.1rem;
+}
+
+/* ====================================================================
+   FOOTER
+==================================================================== */
+footer{
+  padding: 34px 60px;
+  background: var(--ink);
+  color: #9aa1aa;
+  font-size: 0.85rem;
+  text-align: center;
+}
+footer a{ color: #cfd3d9; }
+footer a:hover{ color: var(--accent); }
+
+/* ====================================================================
+   RESPONSIVE: TABLET
+==================================================================== */
+@media (max-width: 980px){
+  .project-grid{ grid-template-columns: repeat(2, 1fr); }
+  section{ padding: 70px 40px; }
+  .banner{ padding: 100px 40px 70px; }
+  #projects{ padding: 70px 40px; }
+}
+
+/* ====================================================================
+   RESPONSIVE: MOBILE
+   Sidebar collapses into a top bar + slide-in menu.
+==================================================================== */
+@media (max-width: 760px){
+  .topbar{ display: flex; }
+  .sidebar{
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    top: 60px;
+    width: 78%;
+    max-width: 300px;
+    box-shadow: 6px 0 24px rgba(0,0,0,0.25);
+  }
+  .sidebar.open{ transform: translateX(0); }
+  .main{ margin-left: 0; padding-top: 60px; }
+  .project-grid{ grid-template-columns: 1fr; }
+  .banner{
+    flex-direction: column-reverse;
+    text-align: center;
+    padding: 50px 24px 50px;
+  }
+  .banner .bio-list li{ text-align: left; }
+  section{ padding: 56px 24px; }
+  #projects{ padding: 56px 24px; }
+  .banner h1{ font-size: 1.9rem; }
+  footer{ padding: 28px 24px; }
+}
+
+/* Respect reduced-motion preference */
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior: auto; }
+  *{ transition: none !important; animation: none !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- ====================================================================
+     TOP HEADER BAR — only visible on mobile (see CSS above).
+     EDIT THIS: change "Portfolio" if you want a different logo word.
+==================================================================== -->
+<header class="topbar">
+  <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
+    <i class="fa-solid fa-bars"></i>
+  </button>
+  <span class="logo">Portfolio</span>
+  <div class="topbar-socials">
+    <!-- EDIT THIS: these mirror the sidebar social icons. Update the href links to match. -->
+    <a href="https://github.com/iamgulfam" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+    <a href="https://www.linkedin.com/in/gulfamraza1" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+    <a href="mailto:razagulfam0786@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+  </div>
+</header>
+
+<!-- ====================================================================
+     FIXED LEFT SIDEBAR — name, title, nav, social icons.
+     EDIT THIS: change the name and job title text below.
+==================================================================== -->
+<aside class="sidebar" id="sidebar">
+  <div>
+    <!-- EDIT THIS: your name -->
+    <div class="name">Gulfam Raza</div>
+    <!-- EDIT THIS: your job title / tagline -->
+    <div class="role">Data Analyst &mdash; Excel, SQL, Power BI &amp; Python</div>
+  </div>
+
+  <!-- EDIT THIS: nav links. Each href must match a section id below (e.g. #about). -->
+  <nav>
+    <a href="#about" class="nav-link active">About</a>
+    <a href="#projects" class="nav-link">Projects</a>
+    <a href="#contact" class="nav-link">Contact</a>
+  </nav>
+
+  <!-- EDIT THIS: social icon links at the bottom of the sidebar.
+       To add a new icon: copy one <a> line, change the href and the
+       icon class. Browse icon names at https://fontawesome.com/icons -->
+  <div class="socials">
+    <a href="https://github.com/iamgulfam" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+    <a href="https://www.linkedin.com/in/gulfamraza1" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+    <a href="mailto:razagulfam0786@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+  </div>
+</aside>
+
+<div class="main">
+
+  <!-- ====================================================================
+       BANNER / ABOUT SECTION — bio on the left, photo on the right.
+  ==================================================================== -->
+  <section id="about" class="banner">
+    <div class="bio-col">
+      <span class="eyebrow">About me</span>
+      <h1>Hi, I'm Gulfam Raza.</h1>
+
+      <!-- EDIT THIS: your bio. Each <li> is one bullet line. Add or
+           remove <li> lines freely; the emoji is just plain text. -->
+      <ul class="bio-list">
+        <li><span class="emoji">🎓</span> B.Tech in Information Technology, RKGIT Ghaziabad (AKTU), CGPA 8.05, First Division with Distinction</li>
+        <li><span class="emoji">📊</span> Looking for Data Analyst jobs and related roles like Business Analyst, MIS Executive, etc.</li>
+        <li><span class="emoji">🧠</span> I turn raw data into dashboards, reports, and models that drive decisions</li>
+        <li><span class="emoji">🛠️</span> Skilled in Excel, Power BI, SQL, and Python for end-to-end data analysis</li>
+        <li><span class="emoji">🚀</span> Open to Data Analyst roles in Delhi NCR and remote</li>
+      </ul>
+
+      <!-- EDIT THIS: skills line. Edit the text between the strong tags and after it. -->
+      <p class="skills-line">
+        <strong>Core tools:</strong> Excel, SQL, Power BI, Power Query, DAX, Python, NumPy, Pandas, Matplotlib, Seaborn.
+        <strong>Also exploring:</strong> Generative AI, Microsoft Fabric, Azure, Machine Learning, DSA, Statistics.
+      </p>
+    </div>
+
+    <div class="photo-col">
+      <!--
+        EDIT THIS: YOUR PROFILE PHOTO
+        Step 1: Put your photo file inside the "images" folder next to this index.html
+                (for example images/profile.jpg)
+        Step 2: Replace the line below with:
+                <img src="images/profile.jpg" alt="Gulfam Raza">
+        Right now this circle shows a placeholder icon because no photo
+        has been added yet. Just swap the <i> line for the <img> line above.
+      -->
+      <div class="photo-frame">
+        <i class="fa-solid fa-user"></i>
+        <!-- <img src="images/profile.jpg" alt="Gulfam Raza"> -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       PROJECTS SECTION — 3 column responsive card grid.
+       EDIT THIS: each project lives in a <div class="project-card">...</div>
+       block below. To add a new project, copy one whole card block
+       (from the opening <div class="project-card"> to its closing </div>)
+       and paste it right before </div> that closes .project-grid.
+       Then change: the image, the <h3> title, the <p> description,
+       and the href on the "View Project" button.
+  ==================================================================== -->
+  <section id="projects">
+    <div class="projects-inner">
+      <div class="section-head">
+        <span class="eyebrow">Selected work</span>
+        <h2>Projects</h2>
+      </div>
+
+      <div class="project-grid">
+
+        <!-- ============ PROJECT CARD 1 ============ -->
+        <div class="project-card">
+          <div class="thumb">
+            <!-- EDIT THIS: put the project image in the images folder, then
+                 set the src to its filename, e.g. images/ola-overview.png -->
+            <img src="images/ola-overview.png" alt="OLA Ride Prediction and Insights Dashboard overview screen">
+          </div>
+          <div class="card-body">
+            <!-- EDIT THIS: project title -->
+            <h3>OLA Ride Prediction &amp; Insights Dashboard</h3>
+            <!-- EDIT THIS: project description -->
+            <p>Built in Power BI with SQL query solving for real-time ride analysis, covering bookings, cancellations, revenue, vehicle types, and ratings.</p>
+            <!-- EDIT THIS: replace the # with your real project link -->
+            <a class="btn-view" href="https://github.com/iamgulfam/ola-ride-insights-dashboard" target="_blank" rel="noopener">View Project</a>
+          </div>
+        </div>
+
+        <!-- ============ PROJECT CARD 2 ============ -->
+        <div class="project-card">
+          <div class="thumb">
+            <img src="images/papollo-hospitals-dashboard.png" alt="Papollo Hospitals leads flow dashboard">
+          </div>
+          <div class="card-body">
+            <h3>Papollo Healthcare Inventory Management Dashboard</h3>
+            <p>Created using Power BI and Excel to track medical stock levels, bed occupancy, and diagnosis trends, and to optimize hospital operations.</p>
+            <a class="btn-view" href="https://github.com/iamgulfam/healthcare-inventory-dashboard" target="_blank" rel="noopener">View Project</a>
+          </div>
+        </div>
+
+        <!-- ============ PROJECT CARD 3 ============ -->
+        <div class="project-card">
+          <div class="thumb">
+            <img src="images/amazon-sales-dashboard.png" alt="Amazon sales tracker dashboard">
+          </div>
+          <div class="card-body">
+            <h3>Amazon Sales Tracker Report</h3>
+            <p>Excel and Power BI project analyzing sales trends, revenue performance, courier status, and growth opportunities across categories and states.</p>
+            <a class="btn-view" href="https://github.com/iamgulfam/amazon-sales-analysis" target="_blank" rel="noopener">View Project</a>
+          </div>
+        </div>
+
+        <!-- ============ PROJECT CARD 4 ============ -->
+        <div class="project-card">
+          <div class="thumb">
+            <img src="images/virat-kohli-dashboard.png" alt="Virat Kohli career statistics analysis dashboard">
+          </div>
+          <div class="card-body">
+            <h3>Virat Kohli Cricket Stats Dashboard</h3>
+            <p>A fun yet powerful Power BI dashboard built with Excel and web-scraped data, covering runs, strike rate, boundaries, and format breakdowns.</p>
+            <a class="btn-view" href="https://github.com/iamgulfam/virat-kohli-performance-dashboard-" target="_blank" rel="noopener">View Project</a>
+          </div>
+        </div>
+
+        <!-- ============ PROJECT CARD 5 ============ -->
+        <div class="project-card">
+          <div class="thumb">
+            <img src="images/youtube-eda-wordcloud-positive.png" alt="Word cloud of positive YouTube comment sentiment">
+          </div>
+          <div class="card-body">
+            <h3>Exploratory Data Analysis of YouTube Data (Python)</h3>
+            <p>Cleaning, analyzing, and visualizing real YouTube datasets in Python, covering sentiment word clouds, emoji usage, and views-likes-dislikes correlation.</p>
+            <a class="btn-view" href="https://github.com/iamgulfam/youtube-eda-python" target="_blank" rel="noopener">View Project</a>
+          </div>
+        </div>
+
+        <!-- ============ PROJECT CARD 6 ============ -->
+        <div class="project-card">
+          <div class="thumb">
+            <!--
+              EDIT THIS: no chart image exists yet for this project, only an
+              output CSV table, so this uses a placeholder icon instead of
+              a photo. To swap in a real image later, replace this whole
+              <div> block with:
+              <img src="images/your-image.png" alt="House price prediction output">
+            -->
+            <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#eef1f4;color:#5e81ac;font-size:2.4rem;">
+              <i class="fa-solid fa-house-chimney"></i>
+            </div>
+          </div>
+          <div class="card-body">
+            <h3>House Price Prediction</h3>
+            <p>Regression model built with Python, Scikit-learn, NumPy, and Pandas to predict Gurgaon house prices from cleaned, engineered features.</p>
+            <a class="btn-view" href="https://github.com/iamgulfam/Gurgaon-House-pricing-project" target="_blank" rel="noopener">View Project</a>
+          </div>
+        </div>
+
+        <!--
+          TO ADD MORE PROJECTS:
+          Copy one whole "project-card" block above (from <div class="project-card">
+          to its matching closing </div>) and paste the copy right here, just before
+          the closing </div> tag for .project-grid below. Then update the image,
+          title, description, and link inside your new copy.
+        -->
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       CONTACT SECTION
+       EDIT THIS: email, LinkedIn, and location text below.
+  ==================================================================== -->
+  <section id="contact">
+    <div class="section-head">
+      <span class="eyebrow">Get in touch</span>
+      <h2>Contact</h2>
+    </div>
+    <ul class="contact-list">
+      <li><i class="fa-solid fa-envelope"></i> <a href="mailto:razagulfam0786@gmail.com">razagulfam0786@gmail.com</a></li>
+      <li><i class="fa-brands fa-linkedin"></i> <a href="https://www.linkedin.com/in/gulfamraza1" target="_blank" rel="noopener">linkedin.com/in/gulfamraza1</a></li>
+      <li><i class="fa-brands fa-github"></i> <a href="https://github.com/iamgulfam" target="_blank" rel="noopener">github.com/iamgulfam</a></li>
+      <li><i class="fa-solid fa-location-dot"></i> Delhi NCR, India</li>
+    </ul>
+  </section>
+
+  <!-- ====================================================================
+       FOOTER
+       EDIT THIS: change the name in the copyright line if needed.
+       The year updates itself automatically, no edit needed there.
+  ==================================================================== -->
+  <footer>
+    &copy; <span id="year"></span> Gulfam Raza. All rights reserved.
+  </footer>
+
+</div>
+
+<script>
+  // Auto-fill the current year in the footer, so you never have to update it.
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Mobile menu toggle: opens and closes the sidebar on small screens.
+  var menuToggle = document.getElementById('menuToggle');
+  var sidebar = document.getElementById('sidebar');
+  menuToggle.addEventListener('click', function(){
+    var isOpen = sidebar.classList.toggle('open');
+    menuToggle.setAttribute('aria-expanded', isOpen);
+  });
+
+  // Close the mobile menu automatically after tapping a nav link,
+  // and highlight the active link based on which section is on screen.
+  var navLinks = document.querySelectorAll('.nav-link');
+  navLinks.forEach(function(link){
+    link.addEventListener('click', function(){
+      sidebar.classList.remove('open');
+      menuToggle.setAttribute('aria-expanded', false);
+    });
+  });
+
+  var sections = document.querySelectorAll('section[id]');
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if (entry.isIntersecting){
+        navLinks.forEach(function(link){
+          link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id);
+        });
+      }
+    });
+  }, { rootMargin: '-40% 0px -55% 0px' });
+  sections.forEach(function(sec){ observer.observe(sec); });
+</script>
+
+</body>
+</html>
